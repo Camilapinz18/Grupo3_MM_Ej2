@@ -37,6 +37,7 @@ new Vue({
         if (this.bodegaSeleccionada === 'bodega1') {
           this.bodega1 -= totalVendido;
           this.ventasBodega1 += totalVendido;
+          localStorage.setItem("totalVendidoB1",this.ventasBodega1)
           if (this.bodega1 <= 100000 / 2) {
             this.mensaje = 'El inventario de la bodega 1 ha llegado a la mitad';
           }
@@ -47,6 +48,7 @@ new Vue({
         } else if (this.bodegaSeleccionada === 'bodega2') {
           this.bodega2 -= totalVendido;
           this.ventasBodega2 += totalVendido;
+          localStorage.setItem("totalVendidoB2",this.ventasBodega1)
           if (this.bodega2 <= 230000 / 2) {
             this.mensaje = 'El inventario de la bodega 2 ha llegado a la mitad';
           }
@@ -54,6 +56,7 @@ new Vue({
             this.mensaje = 'El inventario de la bodega 2 está próximo a agotarse';
           }
         }
+        
       }
     }
   });
