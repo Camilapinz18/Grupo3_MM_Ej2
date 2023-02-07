@@ -16,7 +16,12 @@ const app = Vue.createApp({
 
   methods: {
     alCargarPagina () {
-      localStorage.setItem('inventario', JSON.stringify(this.inventario))
+      if (localStorage.getItem('inventario') === null) {
+        localStorage.setItem('inventario', JSON.stringify(this.inventario))
+      } else {
+        localStorage.setItem('inventario', localStorage.getItem('inventario'))
+      }
+
       this.isBienvenida = true
     },
     irAComprar () {
@@ -66,31 +71,41 @@ const app = Vue.createApp({
             bodega => bodega.bodega == this.bodegaSeleccionada
           )
           this.convertirCantidad()
-          const objetoInventarioModificar = {
-            bodega: inventarioModificar.bodega,
-            cantidad: (inventarioModificar.cantidad =
-              inventarioModificar.cantidad - this.cantidadIngresada)
+
+          if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
+            alert('Hoy hay suficiente en bodega')
+          } else {
+            const objetoInventarioModificar = {
+              bodega: inventarioModificar.bodega,
+              cantidad: (inventarioModificar.cantidad =
+                inventarioModificar.cantidad - this.cantidadIngresada)
+            }
+            this.actualizarLocalStorage(inventarioModificar)
+            console.log('inventarioModificarPostVenta', inventarioModificar)
+            Object.assign(inventarioModificar, objetoInventarioModificar)
+            alert('Compra realizada con exito!')
+            this.cantidadIngresada = ''
           }
-          this.actualizarLocalStorage(inventarioModificar)
-          console.log('inventarioModificarPostVenta', inventarioModificar)
-          Object.assign(inventarioModificar, objetoInventarioModificar)
-          alert('Compra realizada con exito!')
-          this.cantidadIngresada = ''
         } else if (this.bodegaSeleccionada === '2') {
           console.log('b2:', this.bodegaSeleccionada)
           const inventarioModificar = this.inventario.find(
             bodega => bodega.bodega == this.bodegaSeleccionada
           )
           this.convertirCantidad()
-          inventarioModificar.cantidad =
-            inventarioModificar.cantidad - this.cantidadIngresada
-          this.actualizarLocalStorage(inventarioModificar)
-          console.log(
-            'inventarioModificarPostVenta',
-            inventarioModificar.cantidad
-          )
-          alert('Compra realizada con exito!')
-          this.cantidadIngresada = ''
+
+          if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
+            alert('Hoy hay suficiente en bodega')
+          } else {
+            inventarioModificar.cantidad =
+              inventarioModificar.cantidad - this.cantidadIngresada
+            this.actualizarLocalStorage(inventarioModificar)
+            console.log(
+              'inventarioModificarPostVenta',
+              inventarioModificar.cantidad
+            )
+            alert('Compra realizada con exito!')
+            this.cantidadIngresada = ''
+          }
         }
       }
     }
