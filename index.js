@@ -11,8 +11,9 @@ const app = Vue.createApp({
       unidadesMedida: {},
       isBienvenida: false,
       isCompra: false,
-      
-      habilitarBotones:false
+      costoKilo: 5200,
+      ventas: [null, null],
+      habilitarBotones: false
     }
   },
 
@@ -22,7 +23,7 @@ const app = Vue.createApp({
         localStorage.setItem('inventario', JSON.stringify(this.inventario))
       } else {
         localStorage.setItem('inventario', localStorage.getItem('inventario'))
-        this.inventario=JSON.parse(localStorage.getItem('inventario'))
+        this.inventario = JSON.parse(localStorage.getItem('inventario'))
       }
 
       this.isBienvenida = true
@@ -74,7 +75,6 @@ const app = Vue.createApp({
             bodega => bodega.bodega == this.bodegaSeleccionada
           )
           this.convertirCantidad()
-
           if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
             alert('Hoy hay suficiente en bodega')
           } else {
@@ -87,8 +87,12 @@ const app = Vue.createApp({
             console.log('inventarioModificarPostVenta', inventarioModificar)
             Object.assign(inventarioModificar, objetoInventarioModificar)
             alert('Compra realizada con exito!')
+            const valorVendido = this.cantidadIngresada * this.costoKilo
+
+            this.ventas[0] = this.ventas[0] + valorVendido
+            console.log('bentas1', this.ventas)
             this.cantidadIngresada = ''
-            this.habilitarBotones=true
+            this.habilitarBotones = true
           }
         } else if (this.bodegaSeleccionada === '2') {
           console.log('b2:', this.bodegaSeleccionada)
@@ -96,7 +100,6 @@ const app = Vue.createApp({
             bodega => bodega.bodega == this.bodegaSeleccionada
           )
           this.convertirCantidad()
-
           if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
             alert('Hoy hay suficiente en bodega')
           } else {
@@ -108,18 +111,22 @@ const app = Vue.createApp({
               inventarioModificar.cantidad
             )
             alert('Compra realizada con exito!')
+            const valorVendido = this.cantidadIngresada * this.costoKilo
+
+            this.ventas[1] = this.ventas[1] + valorVendido
+            console.log('benta2s', this.ventas)
             this.cantidadIngresada = ''
           }
         }
       }
     },
-    nuevaCompra(){
-      this.habilitarBotones=false
+    nuevaCompra () {
+      this.habilitarBotones = false
     },
-    regresarInicio(){
-      this.habilitarBotones=false
-      this.isCompra=false
-      this.isBienvenida=true
+    regresarInicio () {
+      this.habilitarBotones = false
+      this.isCompra = false
+      this.isBienvenida = true
     }
   },
   created: function () {

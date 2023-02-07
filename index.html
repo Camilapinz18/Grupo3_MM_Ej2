@@ -46,17 +46,20 @@
                 <thead>
                   <tr class="text-success">
                     <th scope="col">Bodega</th>
-                    <th scope="col">Cantidad</th>
+                    <th scope="col">Disponible</th>
+                    <th scope="col">Ventas</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr >
                     <td>Bodega 1</td>
-                    <td>100.000 kg</td>
+                    <td>{{inventario[0].cantidad.toFixed(1)}} kl</td>
+                    <td>$ {{ventas[0]}}</td>
                   </tr>
                   <tr>
                     <td>Bodega 2</td>
-                    <td>230.000 kg</td>
+                    <td>{{inventario[1].cantidad.toFixed(1)}} kl</td>
+                    <td>$ {{ventas[1]}}</td>
                   </tr>
                        
                 </tbody>
