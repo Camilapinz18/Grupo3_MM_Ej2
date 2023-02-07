@@ -21,9 +21,13 @@ const app = Vue.createApp({
     alCargarPagina () {
       if (localStorage.getItem('inventario') === null) {
         localStorage.setItem('inventario', JSON.stringify(this.inventario))
+        localStorage.setItem('ventas', JSON.stringify(this.ventas))
       } else {
         localStorage.setItem('inventario', localStorage.getItem('inventario'))
         this.inventario = JSON.parse(localStorage.getItem('inventario'))
+
+        localStorage.setItem('ventas', localStorage.getItem('ventas'))
+        this.ventas = JSON.parse(localStorage.getItem('ventas'))
       }
 
       this.isBienvenida = true
@@ -40,26 +44,26 @@ const app = Vue.createApp({
         if (actualizacion.bodega === 1) {
           if (item.bodega === 1) {
             item.cantidad = actualizacion.cantidad
-            console.log('cantidad acutalizada ' +actualizacion.cantidad)
-            if (actualizacion.cantidad = 100000 / 2) {
-              alert("va por la mitad el inventario de la bodega 1");
-            }
-            if (actualizacion.cantidad <= 100000 / 10 ) {
-              alert('El inventario de la bodega 1 está próximo a agotarse');
-            }
+            console.log('cantidad acutalizada ' + actualizacion.cantidad)
+            // if ((actualizacion.cantidad = 100000 / 2)) {
+            //   alert('va por la mitad el inventario de la bodega 1')
+            // }
+            // if (actualizacion.cantidad <= 100000 / 10) {
+            //   alert('El inventario de la bodega 1 está próximo a agotarse')
+            // }
           }
 
           return item
         } else if (actualizacion.bodega === 2) {
           if (item.bodega === 2) {
             item.cantidad = actualizacion.cantidad
-            console.log('cantidad acutalizada ' +actualizacion.cantidad)
-            if (actualizacion.cantidad = 230000 / 2) {
-              alert("va por la mitad el inventario de la bodega 1");
-            }
-            if (actualizacion.cantidad <= 230000 / 10 ) {
-              alert('El inventario de la bodega 1 está próximo a agotarse');
-            }
+            console.log('cantidad acutalizada ' + actualizacion.cantidad)
+            // if ((actualizacion.cantidad = 230000 / 2)) {
+            //   alert('va por la mitad el inventario de la bodega 1')
+            // }
+            // if (actualizacion.cantidad <= 230000 / 10) {
+            //   alert('El inventario de la bodega 1 está próximo a agotarse')
+            // }
           }
 
           return item
@@ -88,9 +92,9 @@ const app = Vue.createApp({
           const inventarioModificar = this.inventario.find(
             bodega => bodega.bodega == this.bodegaSeleccionada
           )
-          
+
           this.convertirCantidad()
-          
+
           if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
             alert('No hay suficiente en bodega')
           } else {
@@ -106,7 +110,11 @@ const app = Vue.createApp({
             const valorVendido = this.cantidadIngresada * this.costoKilo
 
             this.ventas[0] = this.ventas[0] + valorVendido
-            console.log('bentas1', this.ventas)
+            console.log('ventas1', this.ventas)
+            localStorage.setItem('ventas', JSON.stringify(this.ventas))
+           
+
+
             this.cantidadIngresada = ''
             this.habilitarBotones = true
           }
@@ -130,7 +138,8 @@ const app = Vue.createApp({
             const valorVendido = this.cantidadIngresada * this.costoKilo
 
             this.ventas[1] = this.ventas[1] + valorVendido
-            console.log('benta2s', this.ventas)
+            localStorage.setItem('ventas', JSON.stringify(this.ventas))
+            console.log('venta2s', this.ventas)
             this.cantidadIngresada = ''
           }
         }
