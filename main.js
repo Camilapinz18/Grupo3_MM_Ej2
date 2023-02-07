@@ -60,3 +60,12 @@ new Vue({
       }
     }
   });
+
+
+  if (actualizacion.cantidad = 100000 / 2) {
+    console.log("El inventario va por la mitad de la bodega 1");
+  } else if (actualizacion.cantidad <= 100000 / 10 ) {
+    console.log('El inventario de la bodega 1 está próximo a agotarse');
+  } else if(actualizacion.cantidad = 0 ) {
+    console.log('El inventario de la bodega esta en cero');
+  }

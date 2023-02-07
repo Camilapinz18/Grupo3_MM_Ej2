@@ -45,12 +45,17 @@ const app = Vue.createApp({
           if (item.bodega === 1) {
             item.cantidad = actualizacion.cantidad
             console.log('cantidad acutalizada ' + actualizacion.cantidad)
-            // if ((actualizacion.cantidad = 100000 / 2)) {
-            //   alert('va por la mitad el inventario de la bodega 1')
-            // }
-            // if (actualizacion.cantidad <= 100000 / 10) {
-            //   alert('El inventario de la bodega 1 está próximo a agotarse')
-            // }
+            
+            console.log('cantidad actualizada ', item.cantidad)
+            if( actualizacion.cantidad === 0) {
+              alert("Bodega en cero")
+            }
+            if ( actualizacion.cantidad === 50000 ){
+              alert("El inventario va por la mitad de la bodega 1")
+            }
+            if ( actualizacion.cantidad <= 10000 && actualizacion.cantidad > 0) {
+              alert('El inventario de la bodega 1 está próximo a agotarse');
+            }  
           }
 
           return item
@@ -58,12 +63,16 @@ const app = Vue.createApp({
           if (item.bodega === 2) {
             item.cantidad = actualizacion.cantidad
             console.log('cantidad acutalizada ' + actualizacion.cantidad)
-            // if ((actualizacion.cantidad = 230000 / 2)) {
-            //   alert('va por la mitad el inventario de la bodega 1')
-            // }
-            // if (actualizacion.cantidad <= 230000 / 10) {
-            //   alert('El inventario de la bodega 1 está próximo a agotarse')
-            // }
+            
+            if( actualizacion.cantidad === 0) {
+              alert("Bodega 2 tiene el inventario en cero")
+            }
+            if ( actualizacion.cantidad === 115000 ){
+              alert("El inventario va por la mitad de la bodega 2")
+            }
+            if ( actualizacion.cantidad <= 23000 && actualizacion.cantidad > 0) {
+              alert('El inventario de la bodega 2 está próximo a agotarse');
+            } 
           }
 
           return item
@@ -94,7 +103,9 @@ const app = Vue.createApp({
           )
 
           this.convertirCantidad()
-
+          
+        
+          
           if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
             alert('No hay suficiente en bodega')
           } else {
