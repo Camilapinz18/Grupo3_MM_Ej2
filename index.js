@@ -36,12 +36,26 @@ const app = Vue.createApp({
         if (actualizacion.bodega === 1) {
           if (item.bodega === 1) {
             item.cantidad = actualizacion.cantidad
+            console.log('cantidad acutalizada ' +actualizacion.cantidad)
+            if (actualizacion.cantidad = 100000 / 2) {
+              alert("va por la mitad el inventario de la bodega 1");
+            }
+            if (actualizacion.cantidad <= 100000 / 10 ) {
+              alert('El inventario de la bodega 1 está próximo a agotarse');
+            }
           }
 
           return item
         } else if (actualizacion.bodega === 2) {
           if (item.bodega === 2) {
             item.cantidad = actualizacion.cantidad
+            console.log('cantidad acutalizada ' +actualizacion.cantidad)
+            if (actualizacion.cantidad = 230000 / 2) {
+              alert("va por la mitad el inventario de la bodega 1");
+            }
+            if (actualizacion.cantidad <= 230000 / 10 ) {
+              alert('El inventario de la bodega 1 está próximo a agotarse');
+            }
           }
 
           return item
@@ -70,10 +84,11 @@ const app = Vue.createApp({
           const inventarioModificar = this.inventario.find(
             bodega => bodega.bodega == this.bodegaSeleccionada
           )
+          
           this.convertirCantidad()
-
+          
           if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
-            alert('Hoy hay suficiente en bodega')
+            alert('No hay suficiente en bodega')
           } else {
             const objetoInventarioModificar = {
               bodega: inventarioModificar.bodega,
@@ -94,7 +109,7 @@ const app = Vue.createApp({
           this.convertirCantidad()
 
           if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
-            alert('Hoy hay suficiente en bodega')
+            alert('No hay suficiente en bodega')
           } else {
             inventarioModificar.cantidad =
               inventarioModificar.cantidad - this.cantidadIngresada
