@@ -13,14 +13,16 @@
         <div class="container mt-5 mb-5  w-50-responsive border" v-if="isBienvenida">
             <form @submit.prevent="irAComprar">
                 <legend class="text-success fw-bold">Bienvenido a Market Mix</legend>
-                <select class="form-select mb-2" aria-label="Default select example" v-model="bodegaSeleccionada">
-                    <option selected>Seleccione la bodega de arroz</option>
+                <label for="bodega" class="form-label">Bodega:</label>
+                <select class="form-select mb-2" aria-label="Default select example" v-model="bodegaSeleccionada" required id="bodega">
+                    <option selected disabled>--Seleccione la bodega de arroz--</option>
                     <option value="1">Bodega 1</option>
                     <option value="2">Bodega 2</option>
                     
                   </select>
-                  <select class="form-select mb-3" aria-label="Default select example" v-model="unidadSeleccionada">
-                    <option selected>Seleccione la unidad de medida</option>
+                  <label for="medida" class="form-label">Unidad:</label>
+                  <select class="form-select mb-3" aria-label="Default select example" v-model="unidadSeleccionada" required id="medida">
+                    <option selected disabled>--Seleccione la unidad de medida--</option>
                     <option value="kg">Kilogramos</option>
                     <option value="lb">Libras</option>
                     <option value="g">Gramos</option>
@@ -53,21 +55,13 @@
                 <tbody>
                   <tr >
                     <td>Bodega 1</td>
-<<<<<<< HEAD
-                    <td>{{ inventario[0].cantidad }}</td>
+                    <td>{{inventario[0].cantidad.toFixed(1)}} Kg</td>
+                    <td>$ {{(ventas[0])?ventas[0].toLocaleString('es-ES',{style:'currency',currency:'COP',maximumFractionDigits: 0}):null}}</td>
                   </tr>
                   <tr>
                     <td>Bodega 2</td>
-                    <td>{{ inventario[1].cantidad }}</td>
-=======
-                    <td>{{inventario[0].cantidad.toFixed(1)}} kl</td>
-                    <td>$ {{ventas[0]}}</td>
-                  </tr>
-                  <tr>
-                    <td>Bodega 2</td>
-                    <td>{{inventario[1].cantidad.toFixed(1)}} kl</td>
-                    <td>$ {{ventas[1]}}</td>
->>>>>>> desarrollo
+                    <td>{{inventario[1].cantidad.toFixed(1)}} Kg</td>
+                    <td>$ {{(ventas[1])?ventas[1].toLocaleString('es-ES',{style:'currency',currency:'COP',maximumFractionDigits: 0}):null}}</td>
                   </tr>
                        
                 </tbody>

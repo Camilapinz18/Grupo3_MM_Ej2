@@ -90,10 +90,7 @@ const app = Vue.createApp({
           )
           
           this.convertirCantidad()
-<<<<<<< HEAD
           
-=======
->>>>>>> desarrollo
           if (inventarioModificar.cantidad - this.cantidadIngresada < 0) {
             alert('No hay suficiente en bodega')
           } else {
