@@ -28,13 +28,16 @@
                   <button type='submit' class="btn btn-success mb-2">Ir a mercar</button>
             </form>
         </div>
-
+<!--  -->
         <div class="container mt-5 mb-5  w-50-responsive border" v-if="isCompra">
-            <form @submit.prevent="realizarCompra">
+            <h6 v-if="habilitarBotones" >Seleccione la actividad que desea realizar:</h6>
+            <form @submit.prevent="realizarCompra" v-if="!habilitarBotones">
                 <label for="cantidad" class="form-label fw-medium">Ingrese la cantidad de {{unidadSeleccionada}} que quiere comprar:</label>
-                <input type="number" required class="form-control mb-2" id="cantidad" placeholder="Cantidad" v-model="cantidadIngresada">
-                <button type='submit' class="btn btn-success mb-2" >Comprar</button>
+                <input type="number" required class="form-control mb-3" id="cantidad" placeholder="Cantidad" v-model="cantidadIngresada" >
+                <button type='submit' class="btn btn-success mb-2 me-2" >Comprar</button>
             </form>
+            <button  class="btn btn-danger mb-2 me-2" v-if="habilitarBotones" v-on:click="nuevaCompra">Nueva Compra</button>
+            <button  class="btn btn-danger mb-2 me-2"  v-on:click="regresarInicio">Regresar al inicio</button>
         </div>
       
         <div class="container mt-5 mb-5  w-50-responsive border">
@@ -43,17 +46,28 @@
                 <thead>
                   <tr class="text-success">
                     <th scope="col">Bodega</th>
-                    <th scope="col">Cantidad</th>
+                    <th scope="col">Disponible</th>
+                    <th scope="col">Ventas</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr >
                     <td>Bodega 1</td>
+<<<<<<< HEAD
                     <td>{{ inventario[0].cantidad }}</td>
                   </tr>
                   <tr>
                     <td>Bodega 2</td>
                     <td>{{ inventario[1].cantidad }}</td>
+=======
+                    <td>{{inventario[0].cantidad.toFixed(1)}} kl</td>
+                    <td>$ {{ventas[0]}}</td>
+                  </tr>
+                  <tr>
+                    <td>Bodega 2</td>
+                    <td>{{inventario[1].cantidad.toFixed(1)}} kl</td>
+                    <td>$ {{ventas[1]}}</td>
+>>>>>>> desarrollo
                   </tr>
                        
                 </tbody>
