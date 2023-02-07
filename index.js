@@ -10,7 +10,9 @@ const app = Vue.createApp({
       unidadSeleccionada: null,
       unidadesMedida: {},
       isBienvenida: false,
-      isCompra: false
+      isCompra: false,
+      
+      habilitarBotones:false
     }
   },
 
@@ -20,6 +22,7 @@ const app = Vue.createApp({
         localStorage.setItem('inventario', JSON.stringify(this.inventario))
       } else {
         localStorage.setItem('inventario', localStorage.getItem('inventario'))
+        this.inventario=JSON.parse(localStorage.getItem('inventario'))
       }
 
       this.isBienvenida = true
@@ -85,6 +88,7 @@ const app = Vue.createApp({
             Object.assign(inventarioModificar, objetoInventarioModificar)
             alert('Compra realizada con exito!')
             this.cantidadIngresada = ''
+            this.habilitarBotones=true
           }
         } else if (this.bodegaSeleccionada === '2') {
           console.log('b2:', this.bodegaSeleccionada)
@@ -108,6 +112,14 @@ const app = Vue.createApp({
           }
         }
       }
+    },
+    nuevaCompra(){
+      this.habilitarBotones=false
+    },
+    regresarInicio(){
+      this.habilitarBotones=false
+      this.isCompra=false
+      this.isBienvenida=true
     }
   },
   created: function () {
