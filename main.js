@@ -15,6 +15,7 @@ new Vue({
     },
     methods: {
       vender() {
+        localStorage.setItem("cantidad",this.cantidad)
         if (this.cantidad > this.bodega1 && this.bodegaSeleccionada === 'bodega1') {
           this.mensaje = 'No se pueden realizar ventas de la bodega 1, el inventario ha llegado a cero o su cantidad supera al inventario';
           return;
