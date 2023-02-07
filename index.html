@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Distribuidora de Arroz</h1>
+        <p>Inventario en bodega 1: {{bodega1}} kilos</p>
+        <p>Inventario en bodega 2: {{bodega2}} kilos</p>
+        <p>Selecciona la bodega:</p>
+        <select v-model="bodegaSeleccionada">
+          <option value="bodega1">Bodega 1</option>
+          <option value="bodega2">Bodega 2</option>
+        </select>
+        <p>Selecciona la unidad:</p>
+        <select v-model="unidad">
+          <option value="kilos">Kilos</option>
+          <option value="libras">Libras</option>
+          <option value="gramos">Gramos</option>
+        </select>
+        <p>Ingresa la cantidad:</p>
+        <input type="number" v-model.number="cantidad">
+        <br><br>
+        <button @click="vender">Vender</button>
+        <br><br>
+        <p>{{mensaje}}</p>
+        <br><br>
+        
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+      <script src="./main.js"></script>
+</body>
+</html>
