@@ -31,7 +31,7 @@
                   <button type='submit' class="btn btn-success mb-2">Ir a mercar</button>
             </form>
         </div>
-        <h3 v-else class="text-dark text-center mt-3">¡Nuestras Bodegas se encuentran vacías por el momento!</h3>
+        <h3 v-if="isBienvenida && (inventario[0].cantidad===0 && inventario[1].cantidad===0)" class="text-dark text-center mt-3">¡Nuestras Bodegas se encuentran vacías por el momento!</h3>
 <!--  -->
         <div class="container mt-3 mb-5  w-50-responsive border" v-if="isCompra">
             <h6 v-if="habilitarBotones" >Seleccione la actividad que desea realizar:</h6>
