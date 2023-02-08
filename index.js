@@ -19,7 +19,10 @@ const app = Vue.createApp({
 
   methods: {
     alCargarPagina () {
-      if (localStorage.getItem('inventario') === null || localStorage.getItem('ventas')===null ) {
+      if (
+        localStorage.getItem('inventario') === null ||
+        localStorage.getItem('ventas') === null
+      ) {
         localStorage.setItem('inventario', JSON.stringify(this.inventario))
         localStorage.setItem('ventas', JSON.stringify(this.ventas))
       } else {
