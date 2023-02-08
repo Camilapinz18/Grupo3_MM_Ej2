@@ -12,14 +12,14 @@ const app = Vue.createApp({
       isBienvenida: false,
       isCompra: false,
       costoKilo: 5200,
-      ventas: [null, null],
+      ventas: [null,null],
       habilitarBotones: false
     }
   },
 
   methods: {
     alCargarPagina () {
-      if (localStorage.getItem('inventario') === null) {
+      if (localStorage.getItem('inventario') === null || localStorage.getItem('ventas')===null ) {
         localStorage.setItem('inventario', JSON.stringify(this.inventario))
         localStorage.setItem('ventas', JSON.stringify(this.ventas))
       } else {
@@ -28,11 +28,12 @@ const app = Vue.createApp({
         localStorage.setItem('ventas', localStorage.getItem('ventas'))
         this.ventas = JSON.parse(localStorage.getItem('ventas'))
       }
-
+     
       this.isBienvenida = true
     },
     irAComprar () {
-      ;(this.isBienvenida = false), (this.isCompra = true)
+      this.isBienvenida = false;
+      this.isCompra = true;
     },
     actualizarLocalStorage (actualizacion) {
       let inventarioActualizar = JSON.parse(localStorage.getItem('inventario'))
@@ -120,6 +121,7 @@ const app = Vue.createApp({
             this.ventas[1] = this.ventas[1] + valorVendido
             localStorage.setItem('ventas', JSON.stringify(this.ventas))
             this.cantidadIngresada = ''
+            this.habilitarBotones = true
           }
         }
       }
